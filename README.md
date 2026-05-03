@@ -1,3 +1,6 @@
+<img width="2816" height="1536" alt="kodex" src="https://github.com/user-attachments/assets/859ada54-74ba-40d6-a9e5-d9e7eea001e4" />
+
+
 # kodex
 
 > Make peer-CLI delegation the **default execution mode** in Claude Code.
