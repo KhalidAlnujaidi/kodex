@@ -2,7 +2,7 @@
 
 > Make peer-CLI delegation the **default execution mode** in Claude Code.
 
-A Claude Code [plugin marketplace](https://docs.claude.com/en/docs/claude-code/plugins) hosting one plugin: **kodex**.
+A repo containing one Claude Code plugin: **kodex**.
 
 ## What it does
 
@@ -15,7 +15,7 @@ See [`plugins/kodex/README.md`](plugins/kodex/README.md) for the full descriptio
 ```
 kodex/
 ├── .claude-plugin/
-│   └── marketplace.json     # this marketplace's manifest
+│   └── marketplace.json     # required by Claude Code's plugin install mechanism
 ├── plugins/
 │   └── kodex/               # the plugin itself
 │       ├── README.md        # ← read this for what kodex does
@@ -85,28 +85,29 @@ alias codex='ANTHROPIC_AUTH_TOKEN=freecc ANTHROPIC_BASE_URL=http://localhost:808
 
 Reload your shell. `codex` is now a Claude Code instance backed by DeepSeek through your proxy. `kodex` will use it as the peer.
 
-> **Verify:** `codex -p 'echo hello'` should run a fresh Claude Code session against your local proxy and print a reply. If it errors out, fix the proxy/alias before installing the plugin.
+> **Verify before installing kodex:** `codex -p 'echo hello'` should run a fresh Claude Code session against your local proxy and print a reply. If it errors out, fix the proxy/alias before going further.
 
 ---
 
 ## Install kodex
 
-Once the peer CLI is working:
+> **Note:** kodex is intentionally distributed by clone-and-install only. It's not advertised for one-line install because the prerequisites above must be working first. If `codex -p 'echo hello'` doesn't work, kodex will deny mechanical commands with no working escape.
+
+Once the peer CLI is verified:
 
 ```bash
-claude plugin marketplace add github:KhalidAlnujaidi/kodex
-claude plugin install kodex@kodex
-```
-
-Then **start a new Claude Code session** for the PreToolUse hook to load.
-
-### Install from a local clone
-
-```bash
+# 1. Clone this repo
 git clone https://github.com/KhalidAlnujaidi/kodex.git
-claude plugin marketplace add ./kodex
+cd kodex
+
+# 2. Register the local clone with Claude Code and install
+claude plugin marketplace add .
 claude plugin install kodex@kodex
+
+# 3. Restart Claude Code (the PreToolUse hook loads at session start)
 ```
+
+That's it. The `marketplace add .` step is just the mechanism Claude Code uses to install local plugins — it does not publish your install to any external listing.
 
 ### Configuration
 
@@ -116,6 +117,13 @@ Two environment variables let you change defaults:
 |---|---|---|
 | `KODEX_PEER_CMD` | `codex` | Name of the peer CLI command. Set to `aider`, `gemini`, your own alias, etc. |
 | `KODEX_BYPASS` | (unset) | Set to `1` to skip the hook entirely (the slash command sets this automatically when invoking the peer). |
+
+### Uninstall
+
+```bash
+claude plugin uninstall kodex@kodex
+claude plugin marketplace remove kodex
+```
 
 ## Contributing
 
@@ -142,14 +150,13 @@ To make sense of the whole stack — what each piece is and where it sits — th
 
 **Claude Code itself**
 - [Claude Code docs](https://docs.claude.com/en/docs/claude-code/overview) — official documentation
-- [Claude Code plugins](https://docs.claude.com/en/docs/claude-code/plugins) — how plugins work, marketplace format, hook lifecycle
+- [Claude Code plugins](https://docs.claude.com/en/docs/claude-code/plugins) — how plugins work, install mechanism, hook lifecycle
 - [Hooks reference](https://docs.claude.com/en/docs/claude-code/hooks) — PreToolUse JSON schema, permission decisions, what kodex's hook is built on
 - [Skills reference](https://docs.claude.com/en/docs/claude-code/skills) — what `SKILL.md` is and when Claude invokes one
 - [Slash commands](https://docs.claude.com/en/docs/claude-code/slash-commands) — what `commands/*.md` files become
 
 **Related ecosystem**
 - [oh-my-claudecode (OMC)](https://github.com/Yeachan-Heo/oh-my-claudecode) — the multi-agent orchestration layer this plugin was inspired by; complementary, not required
-- [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) — the official marketplace; useful as reference for plugin shape
 
 ## License
 

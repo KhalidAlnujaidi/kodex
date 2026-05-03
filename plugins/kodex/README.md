@@ -78,19 +78,16 @@ claude plugin disable kodex@kodex
 
 ## Install
 
-### From this repo (after cloning)
+> See the top-level repo `README.md` for the full setup, including the peer-CLI prerequisites. Short version:
 
 ```bash
-claude plugin marketplace add /path/to/this/repo
+git clone https://github.com/KhalidAlnujaidi/kodex.git
+cd kodex
+claude plugin marketplace add .
 claude plugin install kodex@kodex
 ```
 
-### From GitHub (once published)
-
-```bash
-claude plugin marketplace add github:<owner>/<repo>
-claude plugin install kodex@kodex
-```
+Restart Claude Code after installing so the PreToolUse hook loads.
 
 ## Uninstall
 
