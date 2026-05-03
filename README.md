@@ -140,6 +140,9 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md). Common contributions:
 
 To make sense of the whole stack — what each piece is and where it sits — these are worth bookmarking:
 
+**Guide & Inspiration**
+-[Jack Roberts](https://www.youtube.com/watch?v=tn7zXRv3Xmo)
+
 **The proxy + free-tier setup**
 - [free-claude-code](https://github.com/Alishahryar1/free-claude-code) — the Anthropic-compatible proxy that routes Claude Code traffic to DeepSeek, NVIDIA NIM, OpenRouter, or local models
 - [free-claude-code Providers section](https://github.com/Alishahryar1/free-claude-code#choose-a-provider) — env vars and model identifiers for each supported backend
