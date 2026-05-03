@@ -1,0 +1,16 @@
+{
+  "name": "kodex",
+  "version": "0.1.0",
+  "description": "Default-mode delegation: route mechanical work to a peer CLI agent. Parent Claude reasons and verifies; the peer executes. Configurable peer command via KODEX_PEER_CMD (default: codex).",
+  "author": {
+    "name": "Khalid Nujaidi"
+  },
+  "license": "MIT",
+  "keywords": [
+    "delegation",
+    "peer-cli",
+    "automation",
+    "verification",
+    "codex"
+  ]
+}

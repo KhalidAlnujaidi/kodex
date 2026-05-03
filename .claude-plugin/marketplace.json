@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kodex",
+  "description": "Kodex — make peer-CLI delegation the default execution mode in Claude Code. The parent session reasons and verifies; a peer CLI agent does the mechanical work.",
+  "owner": {
+    "name": "Khalid Nujaidi"
+  },
+  "plugins": [
+    {
+      "name": "kodex",
+      "description": "Default-mode delegation: route mechanical work (bulk file ops, build/install commands, codegen, scaffolding) to a peer CLI agent. Provides a /kodex slash command, a model-invokable skill, and a PreToolUse hook that intercepts mechanical Bash patterns and redirects them to the peer.",
+      "author": {
+        "name": "Khalid Nujaidi"
+      },
+      "category": "productivity",
+      "source": "./plugins/kodex"
+    }
+  ]
+}

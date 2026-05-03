@@ -1,0 +1,17 @@
+{
+  "description": "kodex: intercept mechanical Bash patterns and force delegation to a peer CLI",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PLUGIN_ROOT\"/scripts/pre-tool-kodex.py",
+            "timeout": 3
+          }
+        ]
+      }
+    ]
+  }
+}

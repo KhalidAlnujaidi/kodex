@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local-only / never-publish
+*.local
+.env
+.env.*
+secrets/
+*.pem
+*.key
+
+# Claude Code session artifacts (if any leak into the repo)
+.claude/
+
+# OMC plugin state (session id, transcript path, cost telemetry — never publish)
+.omc/
